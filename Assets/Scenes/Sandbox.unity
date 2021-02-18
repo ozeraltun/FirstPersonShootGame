@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 2028637450}
   range: 100
-  relativePosition: {x: 0.6, y: 0.02, z: 0.6}
+  relativePosition: {x: 0.21, y: 0.012, z: 0.2}
   bulletRotOffset: {x: -21.562, y: -358.512, z: 35.51, w: 1.46}
   bullet: {fileID: 132823732}
 --- !u!1001 &300733501

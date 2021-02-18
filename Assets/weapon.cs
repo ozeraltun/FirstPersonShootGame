@@ -21,25 +21,24 @@ public class weapon : MonoBehaviour
         }
     }
     private void Shoot(){
+        Shell();
+        EnemyHit();
+    }
+    private void Shell(){
+        bulletposition = FPCamera.transform.TransformPoint(relativePosition);
+        Instantiate(bullet, bulletposition, transform.rotation);
+    }
+    private void EnemyHit(){
         RaycastHit hit; //What you hit
         float damage = 10f;
-        //Create Bullet
-        bulletposition = FPCamera.transform.TransformPoint(relativePosition);
-        //bulletrotation = transform.rotation;
-        //bullet.rotation = bullet.rotation * bulletRotOffset;
-        Instantiate(bullet, bulletposition, transform.rotation);
-        //Bullet Created
-
         if(Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range)){ //position direction whatyouhit range
             EnemyHealth targetDamaged = hit.transform.GetComponent<EnemyHealth>();
             if(targetDamaged == null) return; 
             targetDamaged.TakeDamage(damage);
             Debug.Log("I hit this thing: " + hit.transform.name);
-            
         } 
         else{
             return;
         }
-        
     }
 }
