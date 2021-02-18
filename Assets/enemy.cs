@@ -19,6 +19,7 @@ public class enemy : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         detectRadius = beforeDetectRadius;
         detected = false;
+        detectionCheck();
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class enemy : MonoBehaviour
     }
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, beforeDetectRadius);
+        Gizmos.DrawWireSphere(transform.position, beforeDetectRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, afterDetectRadius);
     }

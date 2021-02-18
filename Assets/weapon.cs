@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,15 @@ public class weapon : MonoBehaviour
     }
     private void Shoot(){
         RaycastHit hit; //What you hit
-        Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range); //position direction whatyouhit range
-        Debug.Log("I hit this thing: " + hit.transform.name);
+        float damage = 10f;
+        if(Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range)){ //position direction whatyouhit range
+            EnemyHealth targetDamaged = hit.transform.GetComponent<EnemyHealth>(); 
+            targetDamaged.TakeDamage(damage);
+            Debug.Log("I hit this thing: " + hit.transform.name);
+        } 
+        else{
+            return;
+        }
+        
     }
 }
