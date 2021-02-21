@@ -26,6 +26,7 @@ public class weapon : MonoBehaviour
         FlashMuzzle();
         Shell();
         EnemyHit();
+        GetComponent<Animator>().SetTrigger("shootingTrigger");
     }
     private void FlashMuzzle(){
         muzzleFlash.Play();
