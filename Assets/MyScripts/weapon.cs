@@ -11,6 +11,13 @@ public class weapon : MonoBehaviour
 
     [SerializeField] Vector3 relativePosition = new Vector3(0.6f, 0.02f, 0.6f);
     [SerializeField] Quaternion bulletRotOffset = new Quaternion(-21.562f, -358.512f, 35.51f, 0f); 
+
+    public Camera myCamera;
+    [SerializeField] float cameraFOVNormal = 60f;
+    [SerializeField] float cameraFOVZoom = 70f;
+    bool zoomVal = false;
+    float lastRMouseTime, timeBetweenRMouseClick = 0.3f;
+
     public GameObject bullet;
 
     Vector3 bulletposition;
@@ -18,9 +25,28 @@ public class weapon : MonoBehaviour
 
     [SerializeField] float bulletForce = 5f; 
     void Update(){
-        if (Input.GetButtonDown("Fire1")){
+        if (Input.GetMouseButtonDown(0)){
             Shoot();
         }
+        if(Input.GetMouseButtonDown(1)){ //RightClick
+            Zoom();
+        }
+    }
+    private void Zoom(){
+        if(zoomVal){
+                if(Time.time - lastRMouseTime > timeBetweenRMouseClick){
+                    zoomVal = false;
+                    myCamera.fieldOfView = cameraFOVNormal;
+                    lastRMouseTime = Time.time;
+                }
+            }
+            else{
+                if(Time.time - lastRMouseTime > timeBetweenRMouseClick){
+                    zoomVal = true;
+                    myCamera.fieldOfView = cameraFOVZoom;
+                    lastRMouseTime = Time.time;
+                }    
+            }
     }
     private void Shoot(){
         FlashMuzzle();
