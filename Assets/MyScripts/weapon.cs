@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class weapon : MonoBehaviour
 {
+    public Image sniper_crosshair;
     [SerializeField] Camera FPCamera;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
@@ -38,6 +40,7 @@ public class weapon : MonoBehaviour
                     zoomVal = false;
                     myCamera.fieldOfView = cameraFOVNormal;
                     lastRMouseTime = Time.time;
+                    sniper_crosshair.gameObject.SetActive(true);
                 }
             }
             else{
@@ -45,6 +48,7 @@ public class weapon : MonoBehaviour
                     zoomVal = true;
                     myCamera.fieldOfView = cameraFOVZoom;
                     lastRMouseTime = Time.time;
+                    sniper_crosshair.gameObject.SetActive(false);
                 }    
             }
     }
