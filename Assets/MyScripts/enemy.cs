@@ -33,13 +33,16 @@ public class enemy : MonoBehaviour
         
         if(distanceToTarget<detectRadius){
             navMeshAgent.SetDestination(target.position);
-												GetComponent<Animator>().SetTrigger("move");
-            detectRadius = afterDetectRadius;
+												GetComponent<Animator>().SetBool("move", true);
+												//GetComponent<Animator>().SetBool("attack", true);
+												detectRadius = afterDetectRadius;
             detected = true;    
         }
         else{
             detected = false;
-            detectRadius = beforeDetectRadius;
+												GetComponent<Animator>().SetBool("move", false);
+												//GetComponent<Animator>().SetBool("attack", true);
+												detectRadius = beforeDetectRadius;
         }
     }
     void OnDrawGizmosSelected(){
