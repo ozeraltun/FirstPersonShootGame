@@ -12,13 +12,15 @@ public class enemy : MonoBehaviour
     float distanceToTarget = Mathf.Infinity;
     bool detected;
     NavMeshAgent navMeshAgent;
-    
+    bool move;
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         detectRadius = beforeDetectRadius;
         detected = false;
+        move = false;
+        GetComponent<Animator>().SetBool("move", false);
         detectionCheck();
     }
 
@@ -26,25 +28,40 @@ public class enemy : MonoBehaviour
     void Update()
     {
         detectionCheck();
+        movementCheck();
+    }
+    void movementCheck(){
+        if(move == true){
+            //Invoke("MovementStart", 3.0f);
+            MovementStart();
+        }
+        else{
+            //Invoke("MovementStop", 3.0f);
+            MovementStop();
+        }
     }
     void detectionCheck(){
         //Calculate distance between enemy and player
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         
         if(distanceToTarget<detectRadius){
-            navMeshAgent.SetDestination(target.position);
-			GetComponent<Animator>().SetBool("move", true);
-			//GetComponent<Animator>().SetBool("attack", true);
-			detectRadius = afterDetectRadius;
-            detected = true;    
+            detected = true;
+            move = true;
+            detectRadius = afterDetectRadius;
         }
         else{
             detected = false;
-            navMeshAgent.SetDestination(transform.position);
-			GetComponent<Animator>().SetBool("move", false);
-			//GetComponent<Animator>().SetBool("attack", true);
-			detectRadius = beforeDetectRadius;
+            detectRadius = beforeDetectRadius;
+            move = false;
         }
+    }
+    void MovementStart(){
+        navMeshAgent.SetDestination(target.position);
+        GetComponent<Animator>().SetBool("move", move);
+    }
+    void MovementStop(){
+        navMeshAgent.SetDestination(transform.position);
+		GetComponent<Animator>().SetBool("move", move);
     }
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.blue;

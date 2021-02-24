@@ -1846,13 +1846,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 139333453, guid: 08bed8d68d6777ac1a60ca387921b16c, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7ea4490a0d9683cb48f5083e979159b0, type: 2}
-    - target: {fileID: 139333453, guid: 08bed8d68d6777ac1a60ca387921b16c, type: 3}
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 8f7380da49034cd488ddff94b1ac35d1, type: 3}
+    - target: {fileID: 139333453, guid: 08bed8d68d6777ac1a60ca387921b16c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7ea4490a0d9683cb48f5083e979159b0, type: 2}
+    - target: {fileID: 323135118310899111, guid: 08bed8d68d6777ac1a60ca387921b16c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4376573872308857813, guid: 08bed8d68d6777ac1a60ca387921b16c,
         type: 3}
       propertyPath: m_Name
@@ -1946,7 +1951,12 @@ PrefabInstance:
     - target: {fileID: 4376573872308857822, guid: 08bed8d68d6777ac1a60ca387921b16c,
         type: 3}
       propertyPath: m_Height
-      value: 1.8
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376573872308857822, guid: 08bed8d68d6777ac1a60ca387921b16c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4376573872308857822, guid: 08bed8d68d6777ac1a60ca387921b16c,
         type: 3}
