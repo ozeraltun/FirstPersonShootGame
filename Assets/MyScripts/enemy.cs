@@ -33,6 +33,7 @@ public class enemy : MonoBehaviour
         
         if(distanceToTarget<detectRadius){
             navMeshAgent.SetDestination(target.position);
+												GetComponent<Animator>().SetTrigger("move");
             detectRadius = afterDetectRadius;
             detected = true;    
         }
