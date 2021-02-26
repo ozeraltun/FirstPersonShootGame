@@ -19,19 +19,35 @@ public class weapon : MonoBehaviour
     [SerializeField] float cameraFOVZoom = 70f;
     bool zoomVal = false;
     float lastRMouseTime, timeBetweenRMouseClick = 0.3f;
+    float lastFlashTime, timeBetweenFlash = 0.3f;
 
     public GameObject bullet;
 
     Vector3 bulletposition;
     Quaternion bulletrotation;
 
-    [SerializeField] float bulletForce = 5f; 
+    [SerializeField] float bulletForce = 5f;
+    bool flashlight; 
+    public Light flashL;
+    void Start(){
+        flashlight = false;
+    }
     void Update(){
         if (Input.GetMouseButtonDown(0)){
             Shoot();
         }
         if(Input.GetMouseButtonDown(1)){ //RightClick
             Zoom();
+        }
+        if (Input.GetKey(KeyCode.F)){ //ToggleFlashlight
+            ToggleFlash();
+        }
+    }
+    private void ToggleFlash(){
+        if(Time.time - lastFlashTime > timeBetweenFlash){
+            flashlight = !flashlight;
+            flashL.enabled = flashlight;
+            lastFlashTime = Time.time;
         }
     }
     private void Zoom(){
